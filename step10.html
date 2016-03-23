@@ -4,7 +4,7 @@
         <meta charset="UTF-8">
         <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.4.5/angular.min.js"></script>
         <link href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-1q8mTJOASx8j1Au+a5WDVnPi2lkFfwwEAa8hDDdjZlpLegxhjVME1fgjWPGmkzs7" crossorigin="anonymous">
-        <title>Todo</title>
+        <title>Todo Step10</title>
         <style type="text/css">
             .todo-list {
                 height: 55px;
@@ -23,7 +23,6 @@
                 ctrl.addTodo = function(txt) {
                     ctrl.todoList.push({date: new Date(), value: txt});
                     ctrl.todoText = '';
-                    ctrl.searchTodoText = {};
                 };
 
                 //Remove todo
@@ -50,16 +49,16 @@
                         </form>
                     </div>
                     <div class="panel-body">
-                        <div class="search-todo" ng-show="ctrl.todoList.length > 0">
+                        <div class="search-todo">
                             <form>
                                 <div class="form-group">
                                     <label>Search Todo</label>
-                                    <input type="text" class="form-control" ng-model="ctrl.searchTodoText.value"/>
+                                    <input type="text" class="form-control" ng-model="searchTodoText.value"/>
                                 </div>
                             </form>
                         </div>
                         <ul class="list-group">
-                            <li class="list-group-item todo-list" ng-repeat="todo in ctrl.todoList | filter: ctrl.searchTodoText">
+                            <li class="list-group-item todo-list" ng-repeat="todo in ctrl.todoList | filter: searchTodoText">
                                 {{todo.date | date: 'yyyy-MM-dd HH:mm:ss': '+0900'}} {{todo.value}}
                                 <button type="button" class="btn btn-danger pull-right" ng-click="ctrl.removeTodo($index);">
                                     <span class="glyphicon glyphicon-minus"></span>

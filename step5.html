@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="UTF-8">
+        <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.4.5/angular.min.js"></script>
+        <link href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-1q8mTJOASx8j1Au+a5WDVnPi2lkFfwwEAa8hDDdjZlpLegxhjVME1fgjWPGmkzs7" crossorigin="anonymous">
+        <title>Todo Step5</title>
+        <style type="text/css">
+        </style>
+        <script>
+            var app = angular.module('todoApp', []);
+            app.controller('todoCtrl', function($scope) {
+                var ctrl = this;
+                ctrl.todoList = [];
+                ctrl.todoText = '';
+
+                //Add todo
+                ctrl.addTodo = function(txt) {
+                    ctrl.todoList.push({date: new Date(), value: txt});
+                };
+            });
+        </script>
+    </head>
+    <body>
+        <div ng-app="todoApp">
+            <div ng-controller="todoCtrl as ctrl">
+                <div class="panel panel-primary">
+                    <div class="panel-heading">Todo List</div>
+                    <div class="panel-body">
+                        <form class="form-inline" name="addNewTodoForm" novalidate>
+                            <label>New Todo</label>
+                            <div class="form-group">
+                                <input type="text" class="form-control" ng-model="ctrl.todoText"/>
+                            </div>
+                            <button type="submit" class="btn btn-success" ng-click="ctrl.addTodo(ctrl.todoText);">
+                                <span class="glyphicon glyphicon-plus"></span>
+                            </button>
+                        </form>
+                        <h1>todoList: {{ctrl.todoList}}</h1>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </body>
+</html>
